@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: first-cm
+  labels:
+    role: app
+    version: v1
+data:
+  key1: "value1"
+  key2: "value2"
+  config1.txt: |
+    enemy.types=aliens,monsters
+    player.maximum-lives=5
+  config2.txt: |
+    color.good=purple
+    color.bad=yellow
+    allow.textmode=true
+
+

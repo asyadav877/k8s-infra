@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bash-pod
+spec:
+  containers:
+    - name: bash-container
+      image: bash
+      resources:
+        limits:
+          memory: "50Mi"
+        requests:
+          memory: "10Mi"
+  
