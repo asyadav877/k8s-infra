@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-deployment
+  labels:
+    name: users
+    role: app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: users
+      role: app
+      version: v1
+  template:
+    metadata:
+        labels:
+          name: users
+          role: app
+          version: v1
+    spec:
+      containers:
+        - name: users-app
+          image: ashish3yadav/users-api:v2
+          env:
+            - name: AUTH_ADDRESS
+              value: "auth-service.default.svc.cluster.local"
+          ports:
+            - name: users-app-port
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: "20m"   # Changed from "20Mi" to "20m"
+              memory: "100Mi"
+            requests:
+              cpu: "10m"   # Changed from "10Mi" to "10m"
+              memory: "50Mi"

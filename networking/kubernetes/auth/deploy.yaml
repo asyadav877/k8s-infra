@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: auth-deployment
+  labels:
+    name: auth
+    role: app
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: auth
+  template:
+    metadata:
+      labels:
+        name: auth
+        role: app
+        version: v1
+    spec:
+      containers:
+        - name: auth-app
+          image: ashish3yadav/auth-app:v3
+          ports:
+            - name: auth-app-port
+              containerPort: 8000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          resources:
+            limits:
+              cpu: "20m"   # Changed from "20Mi" to "20m"
+              memory: "100Mi"
+            requests:
+              cpu: "10m"   # Changed from "10Mi" to "10m"
+              memory: "50Mi"
+
