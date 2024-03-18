@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deployment
+  labels:
+    name: jenkins
+    role: deployment
+    version: v1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: jenkins
+  template:
+    metadata:
+      name: jenkin-pod
+      labels:
+        name: jenkins
+        role: pod
+        version: v1
+    spec:
+      containers:
+        - name: jenkins-container
+          image: jenkins/jenkins:latest
+          imagePullPolicy: Always
+          resources: 
+            limits:
+              memory: "800Mi"
+              cpu: "500m"
+            requests:
+              memory: "400Mi"
+              cpu: "200m"
+          ports:
+            - name: jenkins-port
+              containerPort: 8080
+              protocol: TCP
+            - name: agent-port
+              containerPort: 50000
+          # livenessProbe:
+          #   httpGet:
+          #     path: /login
+          #     port: 8080
+          #   initialDelaySeconds: 60
+          #   periodSeconds: 20
+

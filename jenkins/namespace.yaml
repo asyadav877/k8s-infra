@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metdata:
+  name: development
+  labels:
+    name: development
+    env: nonprod
