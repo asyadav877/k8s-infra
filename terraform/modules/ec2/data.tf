@@ -3,13 +3,26 @@ data "aws_security_group" "sg" {
         name = "tag:role"
         values = [var.tags["role"]]
     }
+    
+    filter {
+        name = "tag:env"
+        values = [var.tags["env"]]
+    }
 }
+ 
+data "aws_subnets" "subnet" {
 
-data "aws_subnet" "subnet" {
-    vpc_id = "vpc-01f6d14a6f1a52c16"
-
+    filter {
+        name = "vpc-id"
+        values = ["${var.vpc_id}"]
+    }
     filter {
         name = "tag:role"
         values = [var.tags["role"]]
+    }
+    
+    filter {
+        name = "tag:env"
+        values = [var.tags["env"]]
     }
 }

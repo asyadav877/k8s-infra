@@ -20,10 +20,20 @@ variable "key_name" {
     default = "default-key"
 }
 
+variable "vpc_id" {
+    type = string
+    description = "This is the vpc id"
+}
+
 variable "instance_count" { 
     type = number
     default = 1
     description = "count of instances"
+}
+
+variable "userdata_enabled" {
+    type = bool
+    default = false
 }
 
 variable "iam" {
