@@ -22,6 +22,11 @@ module "master_node" {
         Name = "k8s-master-node"
     }
     userdata_enabled = true
+    root_block_device = [{
+        delete_on_termination = true
+        volume_type = "gp3"
+        volume_size = 15
+    }]
 }
 
 module "data_node" {
@@ -39,4 +44,9 @@ module "data_node" {
         Name = "k8s-worker-node"
     }
     userdata_enabled = true
+    root_block_device = [{
+        delete_on_termination = true
+        volume_type = "gp3"
+        volume_size = 20
+    }]
 }
