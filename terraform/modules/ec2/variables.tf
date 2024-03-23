@@ -67,3 +67,8 @@ variable "bucket" {
     description = "This is the name of the s3 bucket"
     default = "learn-state-file-bucket"
 }
+
+variable "root_block_device" {
+    type = list(map(string))
+
+}
