@@ -47,6 +47,9 @@ pipeline {
                     def input = input(
                         id: 'userInput',
                         message: 'Proceed with the pipeline?'
+                        parameters: [
+                            [$class: 'BooleanParameterDefinition', defaultValue: true, description: 'Proceed?', name: 'PROCEED']
+                        ]
                     )
                     if (!userInput.PROCEED) {
                         error('Pipeline aborted by user')
