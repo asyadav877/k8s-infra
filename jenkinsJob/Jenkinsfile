@@ -13,6 +13,7 @@ pipeline {
                 dir("automatedTerraform/resource/${resource}"){
                     sh 'ls -la'
                     sh 'pwd'
+                    sh "echo ${terraform.tfvars}"
                 }
             }
         }
