@@ -12,10 +12,10 @@ pipeline {
             steps {
                 script {
                     def content = params.tfvars
-                    writeFile file: 'terraform.tfvars', text: content
+                    writeFile file: "automatedTerraform/${resources}/terraform.tfvars", text: content
                 }
 
-                sh "cat terraform.tfvars"
+                sh "cat automatedTerraform/${resources}/terraform.tfvars"
             }
         }
 
