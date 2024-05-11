@@ -5,6 +5,7 @@ pipeline {
             steps{
                 sh 'echo   "Not checking out the repo since already inside that repo"'
                 sh 'pwd'
+                sh 'ls'
             }
 
         }
