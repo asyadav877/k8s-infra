@@ -20,7 +20,7 @@ pipeline {
         stage('Initialising the terraform'){
             steps {
                 dir("automatedTerraform/resource/${resource}"){
-                    sh '/usr/local/bin/terraform init -reconfigure'
+                    sh '/usr/local/bin/terraform init -reconfigure -no-color'
                 }
 
             }
@@ -29,7 +29,7 @@ pipeline {
         stage('Planning the terraforn resource'){
             steps {
                 dir("automatedTerraform/resource/${resource}"){
-                    sh '/usr/local/bin/terraform plan'
+                    sh '/usr/local/bin/terraform plan -no-color' 
                 }
 
             }
