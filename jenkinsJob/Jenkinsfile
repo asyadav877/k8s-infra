@@ -9,9 +9,11 @@ pipeline {
         }
 
         stage('Navigating to module directory and specific resource'){
-            dir("automatedTerraform/resource/${resource}"){
-                sh 'ls -la'
-                sh 'pwd'
+            steps{
+                dir("automatedTerraform/resource/${resource}"){
+                    sh 'ls -la'
+                    sh 'pwd'
+                }
             }
         }
     }
