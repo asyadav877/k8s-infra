@@ -41,12 +41,12 @@ pipeline {
             }
         }
 
-        stage('Proceed to create resource or abort'){
+        stage('Proceed to create or delete the resource'){
             steps{
                 script {
                     def userInput = input(
                         id: 'confirm',
-                        message: 'Proceed with the pipeline?',
+                        message: "Proceed to ${action} the resource",
                         parameters: [
                             [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Proceed to create?', name: 'PROCEED']
                         ]
@@ -56,7 +56,7 @@ pipeline {
                     }
                     else{
                         dir("automatedTerraform/resource/${resource}"){
-                            sh '/usr/local/bin/terraform apply --auto-approve -no-color'
+                            sh "/usr/local/bin/terraform ${action} --auto-approve -no-color"
                         }
                     }
                 }
