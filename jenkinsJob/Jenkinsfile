@@ -15,7 +15,7 @@ pipeline {
                     writeFile file: 'terraform.tfvars', text: content
                 }
 
-                sh "cat terrform.tfvars"
+                sh "cat terraform.tfvars"
             }
         }
 
