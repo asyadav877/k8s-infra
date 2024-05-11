@@ -46,7 +46,7 @@ pipeline {
                 script {
                     def input = input(
                         id: 'userInput',
-                        message: 'Proceed with the pipeline?'
+                        message: 'Proceed with the pipeline?',
                         parameters: [
                             [$class: 'BooleanParameterDefinition', defaultValue: true, description: 'Proceed?', name: 'PROCEED']
                         ]
