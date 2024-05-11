@@ -55,7 +55,7 @@ pipeline {
             }
         }
 
-        stage("Creating ${resource} ..."){
+        stage('Creating Resource ...'){
             steps {
                 dir("automatedTerraform/resource/${resource}"){
                     sh '/usr/local/bin/terraform apply --auto-approve -no-color'
