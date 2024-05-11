@@ -19,13 +19,19 @@ pipeline {
 
         stage('Initialising the terraform'){
             steps {
-                sh '/usr/local/bin/terraform init -reconfigure'
+                dir("automatedTerraform/resource/${resource}"){
+                    sh '/usr/local/bin/terraform init -reconfigure'
+                }
+
             }
         }
 
         stage('Planning the terraforn resource'){
             steps {
-                sh 'terraform plan'
+                dir("automatedTerraform/resource/${resource}"){
+                    sh '/usr/local/bin/terraform plan'
+                }
+
             }
         }
     }
