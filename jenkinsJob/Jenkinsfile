@@ -16,5 +16,17 @@ pipeline {
                 }
             }
         }
+
+        stage('Initialising the terraform'){
+            steps {
+                sh 'terraform init -reconfigure'
+            }
+        }
+
+        stage('Planning the terraforn resource'){
+            steps {
+                sh 'terraform plan'
+            }
+        }
     }
 }
