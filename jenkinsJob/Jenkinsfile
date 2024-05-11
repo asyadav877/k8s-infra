@@ -8,12 +8,22 @@ pipeline {
             }
         }
 
+        stage('Write to File') {
+            steps {
+                script {
+                    def content = params.tfvars
+                    writeFile file: 'terraform.tfvars', text: content
+                }
+
+                sh "cat terrform.tfvars"
+            }
+        }
+
         stage('Navigating to module directory and specific resource'){
             steps{
                 dir("automatedTerraform/resource/${resource}"){
                     sh 'ls -la'
                     sh 'pwd'
-                    sh "echo ${terraform.tfvars}"
                 }
             }
         }
