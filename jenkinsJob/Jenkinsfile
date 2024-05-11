@@ -44,28 +44,24 @@ pipeline {
         stage('Proceed to create resource or abort'){
             steps{
                 script {
-                    def input = input(
-                        id: 'userInput',
+                    def userInput = input(
+                        id: 'confirm',
                         message: 'Proceed with the pipeline?',
                         parameters: [
-                            [$class: 'BooleanParameterDefinition', defaultValue: true, description: 'Proceed?', name: 'PROCEED']
+                            [$class: 'BooleanParameterDefinition', defaultValue: false, description: 'Proceed to create?', name: 'PROCEED']
                         ]
                     )
-                    if (!userInput.PROCEED) {
+                    if (userInput == false) {
                         error('Pipeline aborted by user')
+                    }
+                    else{
+                        dir("automatedTerraform/resource/${resource}"){
+                            sh '/usr/local/bin/terraform apply --auto-approve -no-color'
+                        }
                     }
                 }
             }
         }
-
-        stage('Creating Resource ...'){
-            steps {
-                dir("automatedTerraform/resource/${resource}"){
-                    sh '/usr/local/bin/terraform apply --auto-approve -no-color'
-                }
-            }
-        }
-
         stage('Clean Workspace') {
             steps {
                 // Clean the workspace
