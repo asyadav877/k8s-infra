@@ -3,7 +3,8 @@ pipeline {
     stages {
         stage('Checkout Repo'){
             steps{
-                sh 'echo   "HelloWorld"'
+                sh 'echo   "Not checking out the repo since already inside that repo"'
+                sh 'pwd'
             }
 
         }
