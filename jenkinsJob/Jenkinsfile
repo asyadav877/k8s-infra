@@ -10,12 +10,16 @@ pipeline {
 
         stage('Write to File') {
             steps {
-                script {
-                    def content = params.tfvars
-                    writeFile file: "automatedTerraform/${resources}/terraform.tfvars", text: content
+                dir("automatedTerraform/resource/${resource}"){
+                    script {
+                        def content = params.tfvars
+                        writeFile file: "terraform.tfvars", text: content
+                    }
+                    sh "cat terraform.tfvars"
                 }
+                
 
-                sh "cat automatedTerraform/${resources}/terraform.tfvars"
+                
             }
         }
 
