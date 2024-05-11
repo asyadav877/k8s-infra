@@ -4,10 +4,15 @@ pipeline {
         stage('Checkout Repo'){
             steps{
                 sh 'echo   "Not checking out the repo since already inside that repo"'
-                sh 'pwd'
-                sh 'ls'
+                sh 'ls -la'
             }
+        }
 
+        stage('Navigating to module directory and specific resource'){
+            dir("automatedTerraform/resource/${resource}"){
+                sh 'ls -la'
+                sh 'pwd'
+            }
         }
     }
 }
